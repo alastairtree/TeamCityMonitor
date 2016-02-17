@@ -9,25 +9,8 @@ body {
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
-    color: #696969;
-}
-
-a:link {
-    color: #034af3;
-    text-decoration: underline;
-}
-
-a:visited {
-    color: #505abc;
-}
-
-a:hover {
-    color: #1d60ff;
-    text-decoration: none;
-}
-
-a:active {
-    color: #12eb87;
+    color: white;
+    background-color: #696969;
 }
 
 p, ul {
@@ -46,7 +29,6 @@ section {
 ----------------------------------------------------------*/
 h1, h2, h3, h4, h5, h6 {
     font-size: 1.5em;
-    color: #000;
 }
 
 h1 {
@@ -77,51 +59,11 @@ h5, h6 {
 /* you can specify a greater or lesser percentage for the 
 page width. Or, you can specify an exact pixel width. */
 .page {
-    width: 90%;
+    width: 98%;
     margin-left: auto;
     margin-right: auto;
 }
 
-header, #header {
-    position: relative;
-    margin-bottom: 0px;
-    color: #000;
-    padding: 0;
-}
-
-header h1, #header h1 {
-    font-weight: bold;
-    padding: 5px 0;
-    margin: 0;
-    color: #000;
-    border: none;
-    line-height: 2em;
-    font-size: 32px !important;
-    text-shadow: 1px 1px 2px #111;
-}
-
-#main {
-    padding: 30px 30px 15px 30px;
-    background-color: #fff;
-    border-radius: 4px 0 0 0;
-    -webkit-border-radius: 4px 0 0 0;
-    -moz-border-radius: 4px 0 0 0;
-    
-}
-
-footer, 
-#footer {
-    background-color: #fff;
-    color: #999;
-    padding: 10px 0;
-    text-align: center;
-    line-height: normal;
-    margin: 0 0 30px 0;
-    font-size: .9em;
-    border-radius: 0 0 4px 4px;
-    -webkit-border-radius: 0 0 4px 4px;
-    -moz-border-radius: 0 0 4px 4px;
-}
 
 /* TAB MENU   
 ----------------------------------------------------------*/
@@ -339,40 +281,52 @@ div#title {
     width:200px;
     height:200px; 
     margin: 5px 5px 5px 5px;
+    background-color: #3E3E42;
+    padding: 12px;
 }
 
 
 .projectItem > H1, H2, H3, H4
 {
-    text-align: center;
     width: 200px;
+    word-wrap: break-word;
+    max-height:2.2em
 }
 .projectItem > p
 {
-    text-align: center;
-    color: #000;
+    color: white;
+
 }
+
+.projectItem  a:link, 
+.projectItem  a:visited
+{
+    text-decoration: none;
+    color: inherit;
+}
+
 .success
 {
-    border:solid 2px #00CC00; 
-    background-color: #00CC00;
+    border-left:solid 2px #00CC00; 
 }
 .failure, .error
 {
-    border:solid 2px #FF0000; 
-    background-color: #FF0000;
+    border-left:solid 2px crimson; 
 }
+
+.failure h2
+{color:crimson}
+
 .undefined, .unknown
 {
-    border:solid 2px #FF6600; 
-    background-color: #FF6600;
+    border-left:solid 2px #ffa500; 
 }
 
 .warning 
 {
     display:none;
-    border: 2px solid Red;
-    color:Red;
+    border: 2px solid crimson;
+    color:crimson;
     height: 50px;
     text-align:center;
 }

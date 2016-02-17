@@ -13,6 +13,6 @@ namespace BuildMonitor.Models
         public string LastBuildTime { get; set; }
         public string LastBuildStatus { get; set; }
         public string LastBuildStatusText { get; set; }
-        
+        public string Url { get; set; }
     }
 }

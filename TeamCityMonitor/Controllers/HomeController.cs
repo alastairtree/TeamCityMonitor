@@ -17,14 +17,20 @@ namespace BuildMonitor.Controllers
         }
 
         [DisableCaching]
-        public JsonResult GetProjects()
+        public JsonResult GetProjects(int page = 1, int items = 25)
         {
             try
             {
                 using (BuildMonitorRepository repo = new BuildMonitorRepository(Properties.Settings.Default.TeamCityURL))
                 {
-                    var results = repo.GetAllProjectSummary();
-                    return Json(new { success = true, results = results }, JsonRequestBehavior.AllowGet);
+                    var nextPage=string.Empty;
+                    bool morePages;
+                    var results = repo.GetPageOfProjectSummary(out morePages, page, items);
+
+                    if (morePages)
+                        nextPage = String.Format("/Home/GetProjects?page={0}&items={1}", page + 1, items);
+
+                    return Json(new { success = true, results = results, nextPage= nextPage }, JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception ex)
