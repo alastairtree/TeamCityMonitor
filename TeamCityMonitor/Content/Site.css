@@ -322,6 +322,8 @@ div#title {
     border-left:solid 2px #ffa500; 
 }
 
+.undefined h2, .unknown h2{ color: #ffa500; }
+
 .warning 
 {
     display:none;

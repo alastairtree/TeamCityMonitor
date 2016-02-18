@@ -51,7 +51,7 @@
                             else {
                                 $("#lastRefresh").text("Last Refresh : " + GetDateTime());
                                 $("#fetchfailed").hide("slow");
-                                $("#loading").remove();
+                                $("#loading").hide();
                             }
 
                         } else {
@@ -69,6 +69,8 @@
                 projects: ko.observableArray([]),
                 fetchPage: fetch,
                 loadProjects: function () {
+
+                    $("#loading").show();
                     var url = '@Url.Action("GetProjects")?page=1&items=10';
 
                     projectsViewModel.projects.removeAll();
@@ -88,21 +90,21 @@
         });
 
         function GetDateTime() {
-            var currentTime = new Date()
-            var month = currentTime.getMonth() + 1
-            var day = currentTime.getDate()
-            var year = currentTime.getFullYear()
-            var hours = currentTime.getHours()
-            var minutes = currentTime.getMinutes()
+            var currentTime = new Date();
+            var month = currentTime.getMonth() + 1;
+            var day = currentTime.getDate();
+            var year = currentTime.getFullYear();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
             if (minutes < 10) {
-                minutes = "0" + minutes
+                minutes = "0" + minutes;
             }
             return new String().concat(day, "/", month, "/", year, " ", hours, ":", minutes);
         }
 
         function ShowError(errorMessage) {
 
-            $("#loading").remove();
+            $("#loading").hide();
             $("#fetchfailed").text("WARNING: Failed to retrieve projects ... " + errorMessage);
             $("#fetchfailed").show("slow");
         }
@@ -112,11 +114,13 @@
     <p>
         <strong id="lastRefresh">
         </strong>
+        |
+        <strong><span data-bind="text: projects().length"></span> projects with failing builds</strong>
     </p>
     <div id="fetchfailed" class="warning">
     </div>
     <div id="loading" class="loading">
-        <img src="../../Content/ajax-loader.gif" alt="Loading..." />
+        Loading...
     </div>
     <div class="projectContainer" data-bind="foreach: projects">
 

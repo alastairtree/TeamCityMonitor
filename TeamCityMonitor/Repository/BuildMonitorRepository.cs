@@ -39,7 +39,7 @@ namespace BuildMonitor.Repository
             {
                 morePages = projects.Count > (items * page);
 
-                foreach (var proj in projects.Skip((page-1) * items).Take(items))
+                foreach (var proj in projects.Where(x=> !x.Archived).Skip((page-1) * items).Take(items))
                 {
                     var skipRemainingBuildConfigs = false;
 
