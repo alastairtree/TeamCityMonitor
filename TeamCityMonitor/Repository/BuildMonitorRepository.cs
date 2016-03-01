@@ -39,7 +39,7 @@ namespace BuildMonitor.Repository
             {
                 morePages = projects.Count > (items * page);
 
-                foreach (var proj in projects.Where(x=> !x.Archived).Skip((page-1) * items).Take(items))
+                foreach (var proj in projects.Where(x => !x.Archived).Skip((page-1) * items).Take(items))
                 {
                     var skipRemainingBuildConfigs = false;
 
@@ -77,7 +77,8 @@ namespace BuildMonitor.Repository
                                         }
                                     }
 
-                                    if (build.Status != "SUCCESS" && build.StartDate > DateTime.Today.AddYears(-1) &&
+                                    if (build.Status != "SUCCESS" && 
+                                        //build.StartDate > DateTime.Today.AddYears(-1) &&
                                         build.Number != "N/A")
                                     {
                                         projectList.Add(project);
@@ -153,8 +154,9 @@ namespace BuildMonitor.Repository
                 Settings.Default.TeamCityIsGuest
                 );
 
+            var allProjects = client.AllProjects();
 
-            return client.AllProjects();
+            return allProjects.Where(project => !RepositoryConstants.IrrelevantProjectIds.Contains(project.Id)).ToList();
         }
 
         private List<BuildConfig> GetAllBuildConfigs()
