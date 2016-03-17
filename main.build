@@ -1,0 +1,6 @@
+<project default="build">
+	<include buildfile="_powerup\build\nant\common.build" />
+	<property name="solution.name" value="TeamCityMonitor" />
+	<property name="msbuild" value="C:\Program Files (x86)\MSBuild\14.0\Bin\msbuild.exe" />
+  <property name="msbuild.args" value="/p:RunOctoPack=true;OctoPackPublishPackageToFileShare=${package.dir}" />
+</project>
