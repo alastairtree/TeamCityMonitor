@@ -16,7 +16,7 @@
 	<property name="version.major" value="1" unless="${property::exists('version.major')}"/>
 	<property name="version.minor" value="${build.number}" unless="${property::exists('version.minor')}"/>
 	<property name="zip.package" value="true" unless="${property::exists('zip.package')}"/>
-	<property name="msbuild" value="C:\Program Files (x86)\MSBuild\14.0\Bin\msbuild.exe" unless="${property::exists('zip.package')}"/>
+	<property name="msbuild" value="C:\Program Files (x86)\MSBuild\14.0\Bin\msbuild.exe" unless="${property::exists('msbuild')}"/>
 
 	<target name="build" depends="clean compile-solution"/>
 
@@ -36,12 +36,13 @@
 	
 	<target name="compile-solution">
 		<!--<msbuild project="${solution.dir}\${solution.name}.${solution.extension}" verbosity="${build.verbosity}">-->
-        <exec program="${msbuild}">
-            <arg line='"${solution.dir}\${solution.name}.${solution.extension}"' />
+    <exec program="${msbuild}" verbose="true">
+      <arg line='"${solution.dir}\${solution.name}.${solution.extension}"' />
 			<arg value="/property:Configuration=${build.configuration}"/>
 			<arg value="/property:Platform=${build.platform}"/>
 			<arg value="/property:OutDir=${build.out.dir}"/>
 			<arg value="/target:Rebuild"/>
+      <arg value="/maxcpucount" />
 			<arg value="${msbuild.args}" if="${property::exists('msbuild.args')}"/>
 		</exec>
 	</target>
